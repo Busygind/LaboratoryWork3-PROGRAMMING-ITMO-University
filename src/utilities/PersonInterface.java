@@ -1,5 +1,6 @@
 package utilities;
 
-public interface PersonInterface {
-    String getName();
+public interface PersonInterface extends ObjectInterface{
+    void walkingOnShore();
+    void jumpOut();
 }
