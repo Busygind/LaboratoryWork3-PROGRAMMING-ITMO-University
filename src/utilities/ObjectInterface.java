@@ -1,5 +1,5 @@
 package utilities;
 
-public interface ObjectInterface extends PersonInterface{
-    Place getPlace();
+public interface ObjectInterface {
+    String getName();
 }
