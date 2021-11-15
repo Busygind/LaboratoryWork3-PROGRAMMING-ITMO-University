@@ -1,13 +1,13 @@
 package entities;
 
-import utilities.Place;
+import utilities.StreetSideType;
 import utilities.RestaurantAbstract;
 
 public class FoodStation extends RestaurantAbstract {
     private final String name;
-    private final Place PLACE = Place.FIRST_SIDE_OF_ROAD;
+    private StreetSideType streetSide;
 
-    public FoodStation(){
+    public FoodStation() {
         name = "Пищезаправочная станция";
         setCommon(false);
         joinStory();
@@ -18,8 +18,8 @@ public class FoodStation extends RestaurantAbstract {
     }
 
     @Override
-    public void hasOutsideService(){
-        if (!isCommon()){
+    public void hasOutsideService() {
+        if (!isCommon()) {
             System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины. \nЭто было очень удобно для любителей автомобильного спорта.");
         }
     }
@@ -30,10 +30,15 @@ public class FoodStation extends RestaurantAbstract {
     }
 
     @Override
-    public Place getPlace() {
-        return PLACE;
+    public void setStreetSide() {
+        streetSide = StreetSideType.LEFT_SIDE;
     }
 
+    @Override
+    public StreetSideType getStreetSide() {
+        setStreetSide();
+        return streetSide;
+    }
     @Override
     public String getName() {
         return name;
@@ -41,11 +46,11 @@ public class FoodStation extends RestaurantAbstract {
 
     @Override
     public String toString() {
-        return "Пищезаправочная станция '" + name + "' находится на " + PLACE;
+        return "Пищезаправочная станция '" + name + "' находится на " + getStreetSide();
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj instanceof FoodStation) {
             return name.equals(((FoodStation) obj).getName());
