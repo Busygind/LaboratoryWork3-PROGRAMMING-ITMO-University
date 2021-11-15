@@ -1,29 +1,29 @@
 package entities;
 
-import utilities.ObjectInterface;
-import utilities.Place;
+import utilities.BuildingInterface;
+import utilities.StreetSideType;
 
-public class Infrastructure implements ObjectInterface {
+public class Infrastructure implements BuildingInterface {
     private final String name;
-    private final Place PLACE = Place.SECOND_SIDE_OF_ROAD;
+    private StreetSideType streetSide;
     private static String[] inf = new String[10];
     private static int countOfInfs = 0;
 
-    public Infrastructure(String name){
+    public Infrastructure(String name) {
         this.name = name;
         joinStory();
     }
 
-    public void addInfInArray(){
+    public void addInfInArray() {
         inf[countOfInfs] = this.name;
         countOfInfs += 1;
     }
 
-    public void hasWalkingShorties(){
+    public void hasWalkingShorties() {
         StringBuilder list = new StringBuilder();
-        for (int i = 0; i < 9; i++){
+        for (int i = 0; i < 9; i++) {
             list.append(inf[i]).append(", ");
-            if (i == 4){
+            if (i == 4) {
                 list.append("\n");
             }
         }
@@ -35,8 +35,14 @@ public class Infrastructure implements ObjectInterface {
     }
 
     @Override
-    public Place getPlace() {
-        return PLACE;
+    public void setStreetSide() {
+        streetSide = StreetSideType.RIGHT_SIDE;
+    }
+
+    @Override
+    public StreetSideType getStreetSide() {
+        setStreetSide();
+        return streetSide;
     }
 
     @Override
@@ -46,11 +52,11 @@ public class Infrastructure implements ObjectInterface {
 
     @Override
     public String toString() {
-        return "Развлечение '" + name + "' находится на " + PLACE;
+        return "Развлечение '" + name + "' находится на " + getStreetSide();
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj instanceof Infrastructure) {
             return name.equals(((Infrastructure) obj).getName());
