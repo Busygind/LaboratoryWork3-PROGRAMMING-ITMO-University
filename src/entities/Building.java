@@ -1,19 +1,19 @@
 package entities;
 
-import utilities.ObjectInterface;
-import utilities.Place;
+import utilities.BuildingInterface;
+import utilities.StreetSideType;
 
-public class Building implements ObjectInterface {
+public class Building implements BuildingInterface {
     private final String name;
-    private final Place PLACE = Place.FIRST_SIDE_OF_ROAD;
     private static int countOfBuildings;
+    private StreetSideType streetSide;
 
-    public Building(){
+    public Building() {
         name = "неопознанное здание";
         joinStory();
     }
 
-    public Building(String name){
+    public Building(String name) {
         this.name = name;
         joinStory();
     }
@@ -22,13 +22,24 @@ public class Building implements ObjectInterface {
         System.out.println(name + " присоединились к истории.");
     }
 
-    public void beInHouses(){
-        if (PLACE == Place.FIRST_SIDE_OF_ROAD && countOfBuildings == 0) {
+    public void beInHouses() {
+        if (getStreetSide() == StreetSideType.LEFT_SIDE && countOfBuildings == 0) {
             System.out.print("В домах, которые стояли здесь лишь по одну сторону улицы, помещались " + name + ", ");
             countOfBuildings += 1;
-        } else {
+        } else if (getStreetSide() == StreetSideType.LEFT_SIDE) {
             System.out.println(name + ", ");
         }
+    }
+
+    @Override
+    public void setStreetSide() {
+        streetSide = StreetSideType.LEFT_SIDE;
+    }
+
+    @Override
+    public StreetSideType getStreetSide() {
+        setStreetSide();
+        return streetSide;
     }
 
     @Override
@@ -37,17 +48,12 @@ public class Building implements ObjectInterface {
     }
 
     @Override
-    public Place getPlace() {
-        return PLACE;
-    }
-
-    @Override
     public String toString() {
-        return "Здание '" + name + "' находится на " + PLACE;
+        return "Здание '" + name + "' находится на " + getStreetSide();
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj instanceof Building) {
             return name.equals(((Building) obj).getName());
