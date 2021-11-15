@@ -5,7 +5,7 @@ import utilities.PersonInterface;
 public class Person implements PersonInterface {
     private final String name;
 
-    public Person(){
+    public Person() {
         name = "неопознанный персонаж";
         joinStory();
     }
@@ -13,10 +13,6 @@ public class Person implements PersonInterface {
     public Person(String name) {
         this.name = name;
         joinStory();
-    }
-
-    public void walkingOnShore() {
-        System.out.println(name + " прогулялся по набережной");
     }
 
     public void lookAtTheShorties() {
@@ -27,16 +23,22 @@ public class Person implements PersonInterface {
         System.out.println(name + " остановился около небольшого здания, над входом в которое было написано: \"Пищезаправочная станция\"");
     }
 
-    public void jumpOut() {
-        System.out.println(name + " выскакивает из ресторана");
-    }
-
     public void serveLunch() {
         System.out.println(name + " подает обед прямо в машину");
     }
 
     private void joinStory() {
         System.out.println("Персонаж '" + name + "' присоединилась к истории.");
+    }
+
+    @Override
+    public void walkingOnShore() {
+        System.out.println(name + " прогулялся по набережной");
+    }
+
+    @Override
+    public void jumpOut() {
+        System.out.println(name + " выскакивает из ресторана");
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Person implements PersonInterface {
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj instanceof Person) {
             return name.equals(((Person) obj).getName());
