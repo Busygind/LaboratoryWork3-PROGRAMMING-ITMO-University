@@ -6,7 +6,6 @@ import utilities.StreetSideType;
 public class Infrastructure implements BuildingInterface {
     private final String name;
     private StreetSideType streetSide;
-    private static String[] inf = new String[10];
     private static int countOfInfs = 0;
 
     public Infrastructure(String name) {
@@ -14,20 +13,13 @@ public class Infrastructure implements BuildingInterface {
         joinStory();
     }
 
-    public void addInfInArray() {
-        inf[countOfInfs] = this.name;
-        countOfInfs += 1;
-    }
-
     public void hasWalkingShorties() {
-        StringBuilder list = new StringBuilder();
-        for (int i = 0; i < 9; i++) {
-            list.append(inf[i]).append(", ");
-            if (i == 4) {
-                list.append("\n");
-            }
+        if (countOfInfs <= 6) {
+            System.out.println(name + ",");
+            countOfInfs += 1;
+        } else {
+            System.out.println(name + " были переполнены гуляющими коротышками");
         }
-        System.out.println(list + "были переполнены гуляющими коротышками");
     }
 
     private void joinStory() {
