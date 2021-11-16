@@ -1,17 +1,19 @@
 package utilities;
 
+import entities.Person;
+
 public abstract class RestaurantAbstract implements BuildingInterface {
-    protected boolean common;
+    protected boolean isCommon;
 
     public abstract void hasTerrace();
 
-    public abstract void hasOutsideService();
+    public abstract void hasOutsideService(Person waiter);
 
-    public boolean isCommon() {
-        return common;
+    public boolean restaurantIsCommon() {
+        return isCommon;
     }
 
     public void setCommon(boolean common) {
-        this.common = common;
+        this.isCommon = common;
     }
 }
