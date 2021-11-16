@@ -3,7 +3,7 @@ package entities;
 import utilities.PersonInterface;
 
 public class Person implements PersonInterface {
-    private final String name;
+    public final String name;
 
     public Person() {
         name = "неопознанный персонаж";
@@ -34,6 +34,7 @@ public class Person implements PersonInterface {
     @Override
     public void walkingOnShore() {
         System.out.println(name + " прогулялся по набережной");
+        stopNearTheBuilding();
     }
 
     @Override
