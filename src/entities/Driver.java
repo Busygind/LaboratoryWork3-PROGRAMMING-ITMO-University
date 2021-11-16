@@ -22,8 +22,10 @@ public class Driver implements PersonInterface {
     }
 
     @Override
-    public void walkingOnShore() {}
+    public void walkingOnShore() {
+    }
 
     @Override
-    public void jumpOut() {}
+    public void jumpOut() {
+    }
 }
