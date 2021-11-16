@@ -23,9 +23,12 @@ public class CommonRestaurant extends RestaurantAbstract {
     }
 
     @Override
-    public void hasOutsideService() {
-        if (!isCommon()) {
-            System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины");
+    public void hasOutsideService(Person waiter) {
+        if (restaurantIsCommon()) {
+            System.out.println("В заведении \"" + name + "\" нет обслуживания автомашин");
+        } else {
+            System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
+            Driver.beHappy(waiter);
         }
     }
 
