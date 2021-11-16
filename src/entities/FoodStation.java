@@ -43,6 +43,7 @@ public class FoodStation extends RestaurantAbstract {
         setStreetSide();
         return streetSide;
     }
+
     @Override
     public String getName() {
         return name;
