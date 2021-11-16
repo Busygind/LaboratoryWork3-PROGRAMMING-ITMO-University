@@ -3,6 +3,8 @@ import entities.*;
 public class Main {
     public static void main(String[] args) {
         Street lp = new Street("Лос-Паганоса");
+        lp.drag();
+
         Building shop = new Building("магазины");
         Building restaurant = new Building("рестораны");
         Building diningRoom = new Building("столовые");
@@ -11,6 +13,11 @@ public class Main {
         Building booth = new Building("весёлые балаганчики");
         Building garage = new Building("подземные гаражи");
         Building gasStation = new Building("бензозаправочные станции");
+        Building[] buildings = new Building[] {shop, restaurant, diningRoom, hotel, cinema, booth, garage, gasStation};
+        for (Building building : buildings) {
+            building.beInHouses();
+        }
+
         Infrastructure beach = new Infrastructure("Пляжи");
         Infrastructure pool = new Infrastructure("купальни");
         Infrastructure towers = new Infrastructure("ныряльные вышки");
@@ -19,41 +26,23 @@ public class Main {
         Infrastructure swing = new Infrastructure("морские качели и карусели");
         Infrastructure wheels = new Infrastructure("чертовы водяные колеса");
         Infrastructure paraboloid = new Infrastructure("параболоиды");
-        Infrastructure other = new Infrastructure("другие увеселительные механизмы");
+        Infrastructure[] infrastructure = new Infrastructure[] {beach, pool, towers, ports, rests, swing, wheels, paraboloid};
+        for (Infrastructure inf : infrastructure) {
+            inf.hasWalkingShorties();
+        }
+
         Person ponchik = new Person("Пончик");
-        CommonRestaurant cr = new CommonRestaurant();
-        FoodStation fs = new FoodStation();
-        Person waiter = new Person("Официант");
-
-
-        beach.addInfInArray();
-        pool.addInfInArray();
-        towers.addInfInArray();
-        ports.addInfInArray();
-        rests.addInfInArray();
-        swing.addInfInArray();
-        wheels.addInfInArray();
-        paraboloid.addInfInArray();
-        other.addInfInArray();
-
-
-        lp.drag();
-        shop.beInHouses();
-        restaurant.beInHouses();
-        diningRoom.beInHouses();
-        hotel.beInHouses();
-        cinema.beInHouses();
-        booth.beInHouses();
-        garage.beInHouses();
-        gasStation.beInHouses();
-        other.hasWalkingShorties();
         ponchik.walkingOnShore();
         ponchik.lookAtTheShorties();
-        ponchik.stopNearTheBuilding();
+
+        CommonRestaurant cr = new CommonRestaurant();
+        FoodStation fs = new FoodStation();
+
+        Person waiter = new Person("Официант");
         cr.hasTerrace();
         fs.hasTerrace();
-        fs.hasOutsideService();
-        waiter.jumpOut();
-        waiter.serveLunch();
+        fs.hasOutsideService(waiter);
+
+
     }
 }
