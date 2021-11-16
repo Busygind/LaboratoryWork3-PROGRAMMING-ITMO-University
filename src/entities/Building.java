@@ -7,6 +7,8 @@ public class Building implements BuildingInterface {
     private final String name;
     private static int countOfBuildings;
     private StreetSideType streetSide;
+    private static String[] houses = new String[9];
+    private static int countOfHouses = 0;
 
     public Building() {
         name = "неопознанное здание";
@@ -18,17 +20,17 @@ public class Building implements BuildingInterface {
         joinStory();
     }
 
-    private void joinStory() {
-        System.out.println(name + " присоединились к истории.");
+    public void beInHouses() {
+        if (countOfHouses <= 6) {
+            System.out.println(name + ", ");
+            countOfHouses += 1;
+        } else {
+            System.out.println(name + " были в домах на левой стороне дороги");
+        }
     }
 
-    public void beInHouses() {
-        if (getStreetSide() == StreetSideType.LEFT_SIDE && countOfBuildings == 0) {
-            System.out.print("В домах, которые стояли здесь лишь по одну сторону улицы, помещались " + name + ", ");
-            countOfBuildings += 1;
-        } else if (getStreetSide() == StreetSideType.LEFT_SIDE) {
-            System.out.println(name + ", ");
-        }
+    private void joinStory() {
+        System.out.println(name + " присоединились к истории.");
     }
 
     @Override
