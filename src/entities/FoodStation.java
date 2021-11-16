@@ -7,6 +7,7 @@ public class FoodStation extends RestaurantAbstract {
     private final String name;
     private StreetSideType streetSide;
 
+
     public FoodStation() {
         name = "Пищезаправочная станция";
         setCommon(false);
@@ -18,9 +19,12 @@ public class FoodStation extends RestaurantAbstract {
     }
 
     @Override
-    public void hasOutsideService() {
-        if (!isCommon()) {
-            System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины. \nЭто было очень удобно для любителей автомобильного спорта.");
+    public void hasOutsideService(Person waiter) {
+        if (restaurantIsCommon()) {
+            System.out.println("В заведении \"" + name + "\" нет обслуживания автомашин");
+        } else {
+            System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
+            Driver.beHappy(waiter);
         }
     }
 
