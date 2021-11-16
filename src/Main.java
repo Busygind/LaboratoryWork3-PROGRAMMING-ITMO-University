@@ -13,7 +13,7 @@ public class Main {
         Building booth = new Building("весёлые балаганчики");
         Building garage = new Building("подземные гаражи");
         Building gasStation = new Building("бензозаправочные станции");
-        Building[] buildings = new Building[] {shop, restaurant, diningRoom, hotel, cinema, booth, garage, gasStation};
+        Building[] buildings = new Building[]{shop, restaurant, diningRoom, hotel, cinema, booth, garage, gasStation};
         for (Building building : buildings) {
             building.beInHouses();
         }
@@ -26,7 +26,7 @@ public class Main {
         Infrastructure swing = new Infrastructure("морские качели и карусели");
         Infrastructure wheels = new Infrastructure("чертовы водяные колеса");
         Infrastructure paraboloid = new Infrastructure("параболоиды");
-        Infrastructure[] infrastructure = new Infrastructure[] {beach, pool, towers, ports, rests, swing, wheels, paraboloid};
+        Infrastructure[] infrastructure = new Infrastructure[]{beach, pool, towers, ports, rests, swing, wheels, paraboloid};
         for (Infrastructure inf : infrastructure) {
             inf.hasWalkingShorties();
         }
