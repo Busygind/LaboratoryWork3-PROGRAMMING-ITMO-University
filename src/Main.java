@@ -1,22 +1,24 @@
 import entities.*;
 
+import java.sql.SQLOutput;
+
 public class Main {
     public static void main(String[] args) {
-        Street lp = new Street("Лос-Паганоса");
+        Street lp = new Street("Лос-Паганоса", true);
         lp.drag();
 
-        Building shop = new Building("магазины");
-        Building restaurant = new Building("рестораны");
-        Building diningRoom = new Building("столовые");
-        Building hotel = new Building("гостиницы");
-        Building cinema = new Building("кинотеатры");
-        Building booth = new Building("весёлые балаганчики");
-        Building garage = new Building("подземные гаражи");
-        Building gasStation = new Building("бензозаправочные станции");
-        Building[] buildings = new Building[]{shop, restaurant, diningRoom, hotel, cinema, booth, garage, gasStation};
-        for (Building building : buildings) {
-            building.beInHouses();
-        }
+        Institution shop = new Institution("магазины");
+        Institution restaurant = new Institution("рестораны");
+        Institution diningRoom = new Institution("столовые");
+        Institution hotel = new Institution("гостиницы");
+        Institution cinema = new Institution("кинотеатры");
+        Institution booth = new Institution("весёлые балаганчики");
+        Institution garage = new Institution("подземные гаражи");
+        Institution gasStation = new Institution("бензозаправочные станции");
+        Institution[] institutions = new Institution[]{shop, restaurant, diningRoom, hotel, cinema, booth, garage, gasStation};
+        House house = new House();
+        house.fillHouse(institutions);
+        house.showHouseContent();
 
         Infrastructure beach = new Infrastructure("Пляжи");
         Infrastructure pool = new Infrastructure("купальни");
@@ -26,23 +28,23 @@ public class Main {
         Infrastructure swing = new Infrastructure("морские качели и карусели");
         Infrastructure wheels = new Infrastructure("чертовы водяные колеса");
         Infrastructure paraboloid = new Infrastructure("параболоиды");
+        Walker shorty = new Walker("Коротышка");
         Infrastructure[] infrastructure = new Infrastructure[]{beach, pool, towers, ports, rests, swing, wheels, paraboloid};
         for (Infrastructure inf : infrastructure) {
-            inf.hasWalkingShorties();
+            shorty.walkBy(inf);
         }
 
         Person ponchik = new Person("Пончик");
-        ponchik.walkingOnShore();
-        ponchik.lookAtTheShorties();
+        Infrastructure shore = new Infrastructure("побережье");
+        ponchik.walkBy(shore);
 
         CommonRestaurant cr = new CommonRestaurant();
         FoodStation fs = new FoodStation();
 
         Person waiter = new Person("Официант");
-        cr.hasTerrace();
-        fs.hasTerrace();
-        fs.hasOutsideService(waiter);
-
+        cr.getTerraceAvailability();
+        fs.getTerraceAvailability();
+        fs.getOutsideServiceAvialability(waiter);
 
     }
 }
