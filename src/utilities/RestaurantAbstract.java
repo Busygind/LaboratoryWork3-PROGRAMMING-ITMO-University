@@ -1,6 +1,6 @@
 package utilities;
 
-import entities.Person;
+import entities.MainCharacter;
 
 public abstract class RestaurantAbstract implements BuildingInterface {
     protected boolean isCommon;
@@ -13,7 +13,7 @@ public abstract class RestaurantAbstract implements BuildingInterface {
         return isCommon;
     }
 
-    public abstract void getOutsideServiceAvialability(Person waiter);
+    public abstract void getOutsideServiceAvialability(MainCharacter waiter);
 
     public void setCommon(boolean common) {
         this.isCommon = common;
