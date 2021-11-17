@@ -32,7 +32,7 @@ public class CommonRestaurant extends RestaurantAbstract {
     }
 
     @Override
-    public void getOutsideServiceAvialability(Person waiter) {
+    public void getOutsideServiceAvialability(MainCharacter waiter) {
         if (this.hasOutsideService()) {
             System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
             Driver.beHappy(waiter);
