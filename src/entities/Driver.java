@@ -1,16 +1,16 @@
 package entities;
 
-import utilities.PersonInterface;
+import utilities.Person;
 
 import java.util.Objects;
 
-public class Driver implements PersonInterface {
-    public static void beHappy(Person waiter) {
+public class Driver extends Person {
+    public static void beHappy(MainCharacter waiter) {
         System.out.println("Всем автолюбителям это понравилось");
         getSignal(waiter);
     }
 
-    public static void getSignal(Person waiter) {
+    public static void getSignal(MainCharacter waiter) {
         System.out.println("Автолюбители дают сигнал");
         if (Objects.equals(waiter.name, "Официант")) {
             waiter.jumpOut();
