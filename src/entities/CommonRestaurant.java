@@ -17,19 +17,33 @@ public class CommonRestaurant extends RestaurantAbstract {
         System.out.println(name + " присоединились к истории.");
     }
 
-    @Override
-    public void hasTerrace() {
-        System.out.println(name + " имели открытую веранду со столами, за которыми обедали посетители");
+    public void getTerraceAvailability() {
+        if (this.hasTerrace()) {
+            System.out.println("У ресторана '" + name + "' есть терраса");
+        } else {
+            System.out.println("У ресторана '" + name + "' нет террасы");
+
+        }
     }
 
     @Override
-    public void hasOutsideService(Person waiter) {
-        if (restaurantIsCommon()) {
-            System.out.println("В заведении \"" + name + "\" нет обслуживания автомашин");
-        } else {
+    public boolean hasTerrace() {
+        return this instanceof RestaurantAbstract;
+    }
+
+    @Override
+    public void getOutsideServiceAvialability(Person waiter) {
+        if (this.hasOutsideService()) {
             System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
             Driver.beHappy(waiter);
+        } else {
+            System.out.println("В заведении \"" + name + "\" нет обслуживания автомашин");
         }
+    }
+
+    @Override
+    public boolean hasOutsideService() {
+        return !restaurantIsCommon();
     }
 
     @Override
