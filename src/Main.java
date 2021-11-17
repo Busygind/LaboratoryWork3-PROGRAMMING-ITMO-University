@@ -1,7 +1,5 @@
 import entities.*;
 
-import java.sql.SQLOutput;
-
 public class Main {
     public static void main(String[] args) {
         Street lp = new Street("Лос-Паганоса", true);
@@ -34,14 +32,14 @@ public class Main {
             shorty.walkBy(inf);
         }
 
-        Person ponchik = new Person("Пончик");
+        MainCharacter ponchik = new MainCharacter("Пончик");
         Infrastructure shore = new Infrastructure("побережье");
         ponchik.walkBy(shore);
 
         CommonRestaurant cr = new CommonRestaurant();
         FoodStation fs = new FoodStation();
 
-        Person waiter = new Person("Официант");
+        MainCharacter waiter = new MainCharacter("Официант");
         cr.getTerraceAvailability();
         fs.getTerraceAvailability();
         fs.getOutsideServiceAvialability(waiter);
