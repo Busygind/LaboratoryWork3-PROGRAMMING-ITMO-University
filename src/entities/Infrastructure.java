@@ -6,24 +6,24 @@ import utilities.StreetSideType;
 public class Infrastructure implements BuildingInterface {
     private final String name;
     private StreetSideType streetSide;
-    private static int countOfInfs = 0;
+    private boolean hasWalkers;
 
     public Infrastructure(String name) {
         this.name = name;
         joinStory();
     }
 
-    public void hasWalkingShorties() {
-        if (countOfInfs <= 6) {
-            System.out.println(name + ",");
-            countOfInfs += 1;
-        } else {
-            System.out.println(name + " были переполнены гуляющими коротышками");
-        }
+    public void addWalker(Walker walker) {
+        System.out.println(walker.getName() + " начинает гулять в месте: '" + this.name + "'");
+        this.hasWalkers = true;
     }
 
     private void joinStory() {
         System.out.println("Заведение '" + name + "' присоединилось к истории.");
+    }
+
+    public boolean isHasWalkers() {
+        return this.hasWalkers;
     }
 
     @Override
