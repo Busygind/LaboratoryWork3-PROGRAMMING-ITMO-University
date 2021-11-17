@@ -15,22 +15,35 @@ public class FoodStation extends RestaurantAbstract {
     }
 
     private void joinStory() {
-        System.out.println("Персонаж '" + name + "' присоединилась к истории.");
+        System.out.println("Необычный ресторан '" + name + "' присоединилась к истории.");
     }
 
-    @Override
-    public void hasOutsideService(Person waiter) {
-        if (restaurantIsCommon()) {
-            System.out.println("В заведении \"" + name + "\" нет обслуживания автомашин");
-        } else {
+    public void getOutsideServiceAvialability(Person waiter) {
+        if (this.hasOutsideService()) {
             System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
             Driver.beHappy(waiter);
+        } else {
+            System.out.println("В заведении \"" + name + "\" нет обслуживания автомашин");
+        }
+    }
+
+    public void getTerraceAvailability() {
+        if (this.hasTerrace()) {
+            System.out.println("У ресторана '" + name + "' есть терраса");
+        } else {
+            System.out.println("У ресторана '" + name + "' нет террасы");
+
         }
     }
 
     @Override
-    public void hasTerrace() {
-        System.out.println(name + " тоже имела открытую веранду со столами, за которыми обедали посетители.");
+    public boolean hasOutsideService() {
+        return !restaurantIsCommon();
+    }
+
+    @Override
+    public boolean hasTerrace() {
+        return this instanceof RestaurantAbstract;
     }
 
     @Override
