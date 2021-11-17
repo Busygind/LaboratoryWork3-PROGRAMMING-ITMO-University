@@ -18,7 +18,7 @@ public class FoodStation extends RestaurantAbstract {
         System.out.println("Необычный ресторан '" + name + "' присоединилась к истории.");
     }
 
-    public void getOutsideServiceAvialability(Person waiter) {
+    public void getOutsideServiceAvialability(MainCharacter waiter) {
         if (this.hasOutsideService()) {
             System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
             Driver.beHappy(waiter);
