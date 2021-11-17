@@ -1,6 +1,7 @@
 package entities;
 
 import utilities.BuildingInterface;
+import utilities.Person;
 import utilities.StreetSideType;
 
 public class Infrastructure implements BuildingInterface {
@@ -13,7 +14,7 @@ public class Infrastructure implements BuildingInterface {
         joinStory();
     }
 
-    public void addWalker(Walker walker) {
+    public void addWalker(Person walker) {
         System.out.println(walker.getName() + " начинает гулять в месте: '" + this.name + "'");
         this.hasWalkers = true;
     }
