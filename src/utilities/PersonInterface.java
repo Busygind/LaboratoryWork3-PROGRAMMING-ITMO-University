@@ -1,7 +1,9 @@
 package utilities;
 
+import entities.Infrastructure;
+
 public interface PersonInterface extends ObjectInterface {
-    void walkingOnShore();
+    void walkBy(Infrastructure infrastructure);
 
     void jumpOut();
 }
