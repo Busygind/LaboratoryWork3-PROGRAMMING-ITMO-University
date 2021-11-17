@@ -4,18 +4,32 @@ import utilities.ObjectInterface;
 
 public class Street implements ObjectInterface {
     private final String name;
+    private boolean beTheBiggest;
+    private boolean dragOnShore;
 
     public Street(String name) {
         this.name = name;
         joinStory();
     }
 
+    public Street(String name, boolean beTheBiggest) {
+        this.name = name;
+        this.beTheBiggest = true;
+        joinStory();
+    }
+
     public void drag() {
-        System.out.println("Улица " + name + " тянулась вдоль береговой линии");
+        this.dragOnShore = true;
+        System.out.println("Улица " + name + " тянется вдоль береговой линии");
     }
 
     private void joinStory() {
-        System.out.println("Улица '" + name + "' присоединилась к истории.");
+        if (this.beTheBiggest) {
+            System.out.println("Самая большая и красивая улица '" + name + "' присоединилась к истории.");
+        } else {
+            System.out.println("Обычная улица '" + name + "' присоединилась к истории.");
+
+        }
     }
 
     @Override
