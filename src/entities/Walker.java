@@ -1,10 +1,10 @@
 package entities;
 
-import utilities.PersonInterface;
+import utilities.Person;
 
 import java.util.ArrayList;
 
-public class Walker implements PersonInterface {
+public class Walker extends Person {
     private String name;
     private boolean walkingRightNow;
     private ArrayList<Infrastructure> places = new ArrayList<>();
