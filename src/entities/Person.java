@@ -15,10 +15,6 @@ public class Person implements PersonInterface {
         joinStory();
     }
 
-    public void lookAtTheShorties() {
-        System.out.println(name + " поглазел на купающихся коротышек");
-    }
-
     public void stopNearTheBuilding() {
         System.out.println(name + " остановился около небольшого здания, над входом в которое было написано: \"Пищезаправочная станция\"");
     }
@@ -32,9 +28,9 @@ public class Person implements PersonInterface {
     }
 
     @Override
-    public void walkingOnShore() {
-        System.out.println(name + " прогулялся по набережной");
-        stopNearTheBuilding();
+    public void walkBy(Infrastructure infrastructure) {
+        System.out.println(name + " прогулялся в месте: '" + infrastructure.getName() + "'");
+//        stopNearTheBuilding();
     }
 
     @Override
