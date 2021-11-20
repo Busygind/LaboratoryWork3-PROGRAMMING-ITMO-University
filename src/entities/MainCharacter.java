@@ -1,65 +1,77 @@
 package entities;
 
 import utilities.Person;
+import utilities.RestaurantAbstract;
+
+import java.util.Objects;
 
 public class MainCharacter extends Person {
-    public final String name;
+    private RestaurantAbstract currentPlace;
 
     public MainCharacter() {
-        name = "неопознанный персонаж";
+        super("неопознанный персонаж");
         joinStory();
     }
 
     public MainCharacter(String name) {
-        this.name = name;
+        super(name);
         joinStory();
     }
 
-    public void stopNearTheBuilding() {
-        System.out.println(name + " остановился около небольшого здания, над входом в которое было написано: \"Пищезаправочная станция\"");
+    public void stopNearTheRestaurant(RestaurantAbstract rest) {
+        this.currentPlace = rest;
+        System.out.println(getName() + " остановился около ресторана: '" + this.currentPlace.getName() + "'");
     }
 
     public void serveLunch() {
-        System.out.println(name + " подает обед прямо в машину");
+        System.out.println(getName() + " подает обед прямо в машину");
     }
 
     private void joinStory() {
-        System.out.println("Персонаж '" + name + "' присоединилась к истории.");
+        System.out.println("Персонаж '" + getName() + "' присоединилась к истории.");
+    }
+
+    public RestaurantAbstract getCurrentPlace() {
+        return currentPlace;
+    }
+
+    @Override
+    public void stopWalking() {
+        System.out.println(getName() + " нагулялся");
     }
 
     @Override
     public void walkBy(Infrastructure infrastructure) {
-        System.out.println(name + " прогулялся в месте: '" + infrastructure.getName() + "'");
+        System.out.println(getName() + " начал гулять в месте: '" + infrastructure.getName() + "'");
         infrastructure.addWalker(this);
     }
 
     @Override
     public void jumpOut() {
-        System.out.println(name + " выскакивает из ресторана");
-    }
-
-    @Override
-    public String getName() {
-        return name;
+        System.out.println(getName() + " выскакивает из ресторана");
     }
 
     @Override
     public String toString() {
-        return "Персонаж, которого зовут '" + name;
+        if (currentPlace != null) {
+            return "Character '" + getName() + "', now in: '" + currentPlace.getName() + "'";
+        }
+        return "Character '" + getName() + "'";
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof MainCharacter) {
-            return name.equals(((MainCharacter) obj).getName());
-        }
-        return false;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        MainCharacter mainCharacter = (MainCharacter) obj;
+
+        return getName().equals(mainCharacter.getName()) && currentPlace.equals(mainCharacter.currentPlace);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return super.hashCode() + Objects.hash(currentPlace);
     }
 
 }
