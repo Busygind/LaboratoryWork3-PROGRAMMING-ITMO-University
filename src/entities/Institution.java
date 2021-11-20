@@ -5,7 +5,7 @@ import utilities.ObjectInterface;
 import java.util.Objects;
 
 public class Institution implements ObjectInterface {
-    public final String name;
+    private final String name;
     public boolean inHouse;
 
     public Institution() {
