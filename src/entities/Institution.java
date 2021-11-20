@@ -2,6 +2,8 @@ package entities;
 
 import utilities.ObjectInterface;
 
+import java.util.Objects;
+
 public class Institution implements ObjectInterface {
     public final String name;
     public boolean inHouse;
@@ -27,20 +29,21 @@ public class Institution implements ObjectInterface {
 
     @Override
     public String toString() {
-        return "Здание '" + name;
+        return "Institution '" + name;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof Institution) {
-            return name.equals(((Institution) obj).getName());
-        }
-        return false;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Institution institution = (Institution) obj;
+
+        return getName().equals(institution.getName()) && inHouse == institution.inHouse;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hash(name, inHouse);
     }
 }
