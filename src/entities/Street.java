@@ -2,6 +2,8 @@ package entities;
 
 import utilities.ObjectInterface;
 
+import java.util.Objects;
+
 public class Street implements ObjectInterface {
     private final String name;
     private boolean beTheBiggest;
@@ -39,20 +41,26 @@ public class Street implements ObjectInterface {
 
     @Override
     public String toString() {
-        return "Улица '" + name + "'";
+        if (beTheBiggest) {
+            return "Street '" + name + "' is biggest and most beautiful";
+        }
+        return "Just street '" + name + "'";
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof Street) {
-            return name.equals(((Street) obj).getName());
-        }
-        return false;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Street street = (Street) obj;
+
+        return getName().equals(street.getName()) &&
+                beTheBiggest == street.beTheBiggest &&
+                dragOnShore == street.dragOnShore;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hash(name, beTheBiggest, dragOnShore);
     }
 }
