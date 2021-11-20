@@ -4,19 +4,36 @@ import utilities.BuildingInterface;
 import utilities.Person;
 import utilities.StreetSideType;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Infrastructure implements BuildingInterface {
     private final String name;
     private StreetSideType streetSide;
     private boolean hasWalkers;
+    private ArrayList<Person> currentWalkers = new ArrayList<>();
 
     public Infrastructure(String name) {
         this.name = name;
         joinStory();
     }
 
+    public Infrastructure(String name, StreetSideType streetSide) {
+        this.name = name;
+        this.streetSide = streetSide;
+        joinStory();
+    }
+
     public void addWalker(Person walker) {
-        System.out.println(walker.getName() + " начинает гулять в месте: '" + this.name + "'");
+        this.currentWalkers.add(walker);
         this.hasWalkers = true;
+    }
+
+    public void deleteWalker(Person walker) {
+        this.currentWalkers.remove(walker);
+        if (this.currentWalkers.isEmpty()) {
+            this.hasWalkers = false;
+        }
     }
 
     private void joinStory() {
@@ -34,7 +51,6 @@ public class Infrastructure implements BuildingInterface {
 
     @Override
     public StreetSideType getStreetSide() {
-        setStreetSide();
         return streetSide;
     }
 
@@ -45,20 +61,31 @@ public class Infrastructure implements BuildingInterface {
 
     @Override
     public String toString() {
-        return "Развлечение '" + name + "' находится на " + getStreetSide();
+        StringBuilder namesOfCurrentWalkers = new StringBuilder();
+        if (hasWalkers) {
+            for (Person walker : currentWalkers) {
+                namesOfCurrentWalkers.append(walker.getName()).append(", ");
+            }
+            return "Infrastructure '" + name + "', current walkers: " + namesOfCurrentWalkers;
+        }
+        return "Infrastructure without walkers";
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof Infrastructure) {
-            return name.equals(((Infrastructure) obj).getName());
-        }
-        return false;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Infrastructure inf = (Infrastructure) obj;
+
+        return getName().equals(inf.getName()) &&
+                streetSide.equals(inf.streetSide) &&
+                currentWalkers.equals(inf.currentWalkers) &&
+                hasWalkers == inf.hasWalkers;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return Objects.hash(name, streetSide, hasWalkers, currentWalkers);
     }
 }
