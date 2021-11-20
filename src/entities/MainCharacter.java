@@ -73,5 +73,4 @@ public class MainCharacter extends Person {
     public int hashCode() {
         return super.hashCode() + Objects.hash(currentPlace);
     }
-
 }
