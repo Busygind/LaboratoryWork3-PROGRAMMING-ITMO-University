@@ -1,7 +1,6 @@
 package entities;
 
 import utilities.Person;
-import utilities.StreetSideType;
 
 import java.util.Objects;
 
