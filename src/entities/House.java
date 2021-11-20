@@ -32,7 +32,7 @@ public class House implements BuildingInterface {
     public void showHouseContent() {
         ArrayList<String> names = new ArrayList<>();
         for (int i = 0; i < this.institutions.toArray().length; i++) {
-            names.add(this.institutions.get(i).name);
+            names.add(this.institutions.get(i).getName());
         }
         System.out.println(Arrays.toString(new ArrayList[]{names}));
     }
