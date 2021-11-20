@@ -3,25 +3,32 @@ package entities;
 import utilities.StreetSideType;
 import utilities.RestaurantAbstract;
 
+import java.util.Objects;
+
 public class CommonRestaurant extends RestaurantAbstract {
-    private final String name;
     private StreetSideType streetSide;
 
-    public CommonRestaurant() {
-        name = "Обычные рестораны";
+    public CommonRestaurant(String name) {
+        super(name);
         setCommon(true);
         joinStory();
     }
 
+    public CommonRestaurant(String name, StreetSideType streetSide) {
+        super(name);
+        this.streetSide = streetSide;
+        joinStory();
+    }
+
     private void joinStory() {
-        System.out.println(name + " присоединились к истории.");
+        System.out.println(getName() + " присоединились к истории.");
     }
 
     public void getTerraceAvailability() {
         if (this.hasTerrace()) {
-            System.out.println("У ресторана '" + name + "' есть терраса");
+            System.out.println("У ресторана '" + getName() + "' есть терраса");
         } else {
-            System.out.println("У ресторана '" + name + "' нет террасы");
+            System.out.println("У ресторана '" + getName() + "' нет террасы");
 
         }
     }
@@ -34,10 +41,10 @@ public class CommonRestaurant extends RestaurantAbstract {
     @Override
     public void getOutsideServiceAvialability(MainCharacter waiter) {
         if (this.hasOutsideService()) {
-            System.out.println("В заведении \"" + name + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
+            System.out.println("В заведении \"" + getName() + "\" можно было пообедать или позавтракать, не выходя из автомашины.");
             Driver.beHappy(waiter);
         } else {
-            System.out.println("В заведении \"" + name + "\" нет обслуживания автомашин");
+            System.out.println("В заведении \"" + getName() + "\" нет обслуживания автомашин");
         }
     }
 
@@ -53,31 +60,32 @@ public class CommonRestaurant extends RestaurantAbstract {
 
     @Override
     public StreetSideType getStreetSide() {
-        setStreetSide();
         return streetSide;
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public String toString() {
-        return "Обычный ресторан '" + name + "' находится на " + getStreetSide();
+        if (streetSide.equals(StreetSideType.LEFT_SIDE)) {
+            return "Common Restaurant '" + getName() + "', street side: LEFT";
+        }
+        if (streetSide.equals(StreetSideType.RIGHT_SIDE)) {
+            return "Common Restaurant '" + getName() + "', street side: RIGHT";
+        }
+        return "UNDETECTED";
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj instanceof CommonRestaurant) {
-            return name.equals(((CommonRestaurant) obj).getName());
-        }
-        return false;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        CommonRestaurant rest = (CommonRestaurant) obj;
+
+        return getName().equals(rest.getName()) && streetSide.equals(rest.streetSide);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return super.hashCode() + Objects.hash(streetSide);
     }
 }
