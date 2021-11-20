@@ -1,43 +1,44 @@
 import entities.*;
+import utilities.StreetSideType;
 
 public class Main {
     public static void main(String[] args) {
         Street lp = new Street("Лос-Паганоса", true);
         lp.drag();
 
-        Institution shop = new Institution("магазины");
-        Institution restaurant = new Institution("рестораны");
-        Institution diningRoom = new Institution("столовые");
-        Institution hotel = new Institution("гостиницы");
-        Institution cinema = new Institution("кинотеатры");
-        Institution booth = new Institution("весёлые балаганчики");
-        Institution garage = new Institution("подземные гаражи");
-        Institution gasStation = new Institution("бензозаправочные станции");
-        Institution[] institutions = new Institution[]{shop, restaurant, diningRoom, hotel, cinema, booth, garage, gasStation};
+        Institution[] institutions = new Institution[]{new Institution("магазины"),
+                                                        new Institution("рестораны"),
+                                                        new Institution("столовые"),
+                                                        new Institution("гостиницы"),
+                                                        new Institution("кинотеатры"),
+                                                        new Institution("весёлые балаганчики"),
+                                                        new Institution("подземные гаражи"),
+                                                        new Institution("бензозаправочные станции")};
         House house = new House();
         house.fillHouse(institutions);
         house.showHouseContent();
 
-        Infrastructure beach = new Infrastructure("Пляжи");
-        Infrastructure pool = new Infrastructure("купальни");
-        Infrastructure towers = new Infrastructure("ныряльные вышки");
-        Infrastructure ports = new Infrastructure("лодочные и пароходные пристани");
-        Infrastructure rests = new Infrastructure("плавучие рестораны");
-        Infrastructure swing = new Infrastructure("морские качели и карусели");
-        Infrastructure wheels = new Infrastructure("чертовы водяные колеса");
-        Infrastructure paraboloid = new Infrastructure("параболоиды");
         Walker shorty = new Walker("Коротышка");
-        Infrastructure[] infrastructure = new Infrastructure[]{beach, pool, towers, ports, rests, swing, wheels, paraboloid};
+        Infrastructure[] infrastructure = new Infrastructure[]{new Infrastructure("Пляжи"),
+                                                                new Infrastructure("купальни"),
+                                                                new Infrastructure("ныряльные вышки"),
+                                                                new Infrastructure("лодочные и пароходные пристани"),
+                                                                new Infrastructure("плавучие рестораны"),
+                                                                new Infrastructure("морские качели и карусели"),
+                                                                new Infrastructure("чертовы водяные колеса"),
+                                                                new Infrastructure("параболоиды")};
         for (Infrastructure inf : infrastructure) {
             shorty.walkBy(inf);
+            shorty.stopWalking();
         }
+
+        CommonRestaurant cr = new CommonRestaurant("Обычный ресторан", StreetSideType.LEFT_SIDE);
+        FoodStation fs = new FoodStation(StreetSideType.LEFT_SIDE);
 
         MainCharacter ponchik = new MainCharacter("Пончик");
         Infrastructure shore = new Infrastructure("побережье");
         ponchik.walkBy(shore);
-
-        CommonRestaurant cr = new CommonRestaurant();
-        FoodStation fs = new FoodStation();
+        ponchik.stopNearTheRestaurant(fs);
 
         MainCharacter waiter = new MainCharacter("Официант");
         cr.getTerraceAvailability();
