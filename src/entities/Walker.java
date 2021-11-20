@@ -3,30 +3,25 @@ package entities;
 import utilities.Person;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Walker extends Person {
-    private String name;
     private boolean walkingRightNow;
     private ArrayList<Infrastructure> places = new ArrayList<>();
+    private Infrastructure currentPlace;
 
     public Walker() {
-        this.name = "Неопознанный гуляющий персонаж";
-        startWalking();
+        super("неопознанный гуляющий персонаж");
         joinStory();
     }
 
     public Walker(String name) {
-        this.name = name;
-        startWalking();
+        super(name);
         joinStory();
     }
 
     private void joinStory() {
-        System.out.println("Гуляющий персонаж '" + name + "' присоединилось к истории.");
-    }
-
-    public void startWalking() {
-        this.walkingRightNow = true;
+        System.out.println("Гуляющий персонаж '" + getName() + "' присоединилось к истории.");
     }
 
     public boolean isWalkingRightNow() {
@@ -34,19 +29,56 @@ public class Walker extends Person {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public void stopWalking() {
+        this.walkingRightNow = false;
+        System.out.println(getName() + " нагулялся в месте: '" + this.currentPlace.getName() + "'");
+        currentPlace.deleteWalker(this);
+        this.currentPlace = null;
     }
 
     @Override
     public void walkBy(Infrastructure infrastructure) {
-        startWalking();
+        this.walkingRightNow = true;
         places.add(infrastructure);
+        this.currentPlace = infrastructure;
+        System.out.println(getName() + " начал гулять в месте: '" + this.currentPlace.getName() + "'");
         infrastructure.addWalker(this);
     }
 
     @Override
     public void jumpOut() {
-        System.out.println("Гуляющий человек выскакивает из ресторана");
+        System.out.println("Гуляющий человек выскакивает, а находится он в месте: '" + this.currentPlace + "'");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Walker walker = (Walker) obj;
+
+        return getName().equals(walker.getName()) &&
+                currentPlace.equals(walker.currentPlace) &&
+                places.equals(walker.places);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() + Objects.hash(walkingRightNow, places, currentPlace);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder namesOfPlaces = new StringBuilder();
+        if (!places.isEmpty()) {
+            for (Infrastructure place : places) {
+                namesOfPlaces.append(place.getName()).append(", ");
+            }
+            if (walkingRightNow) {
+                return "Walker '" + getName() + "', now walking on: '" + currentPlace.getName() + "', discovered places: '" + namesOfPlaces;
+            }
+            return "Walker '" + getName() + "', not walking now, discovered places: '" + namesOfPlaces;
+        }
+        return "Walker '" + getName() + "' never walked";
     }
 }
