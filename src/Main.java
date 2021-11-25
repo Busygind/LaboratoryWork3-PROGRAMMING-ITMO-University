@@ -6,14 +6,14 @@ public class Main {
         Street lp = new Street("Лос-Паганоса", true);
         lp.drag();
 
-        Institution[] institutions = new Institution[]{new Institution("магазины"),
-                                                        new Institution("рестораны"),
-                                                        new Institution("столовые"),
-                                                        new Institution("гостиницы"),
-                                                        new Institution("кинотеатры"),
-                                                        new Institution("весёлые балаганчики"),
-                                                        new Institution("подземные гаражи"),
-                                                        new Institution("бензозаправочные станции")};
+        Institution[] institutions = new Institution[]{new Institution("магазины", StreetSideType.RIGHT_SIDE),
+                                                        new Institution("рестораны", StreetSideType.RIGHT_SIDE),
+                                                        new Institution("столовые", StreetSideType.RIGHT_SIDE),
+                                                        new Institution("гостиницы", StreetSideType.RIGHT_SIDE),
+                                                        new Institution("кинотеатры", StreetSideType.RIGHT_SIDE),
+                                                        new Institution("весёлые балаганчики", StreetSideType.RIGHT_SIDE),
+                                                        new Institution("подземные гаражи", StreetSideType.RIGHT_SIDE),
+                                                        new Institution("бензозаправочные станции", StreetSideType.RIGHT_SIDE)};
         House house = new House();
         house.fillHouse(institutions);
         house.showHouseContent();
