@@ -1,10 +1,13 @@
 package entities;
 
 import utilities.ObjectInterface;
+import utilities.StreetSideType;
+import utilities.WalkablePlace;
 
 import java.util.Objects;
 
-public class Institution implements ObjectInterface {
+public class Institution implements WalkablePlace {
+    private StreetSideType streetSide;
     private final String name;
     public boolean inHouse;
 
@@ -13,8 +16,9 @@ public class Institution implements ObjectInterface {
         joinStory();
     }
 
-    public Institution(String name) {
+    public Institution(String name, StreetSideType streetSide) {
         this.name = name;
+        this.streetSide = streetSide;
         joinStory();
     }
 
@@ -45,5 +49,15 @@ public class Institution implements ObjectInterface {
     @Override
     public int hashCode() {
         return Objects.hash(name, inHouse);
+    }
+
+    @Override
+    public StreetSideType getStreetSide() {
+        return streetSide;
+    }
+
+    @Override
+    public void setStreetSide(StreetSideType streetSide) {
+        this.streetSide = streetSide;
     }
 }
