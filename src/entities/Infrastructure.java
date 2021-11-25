@@ -1,13 +1,13 @@
 package entities;
 
-import utilities.BuildingInterface;
 import utilities.Person;
 import utilities.StreetSideType;
+import utilities.WalkablePlace;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Infrastructure implements BuildingInterface {
+public class Infrastructure implements WalkablePlace {
     private final String name;
     private StreetSideType streetSide;
     private boolean hasWalkers;
@@ -15,6 +15,7 @@ public class Infrastructure implements BuildingInterface {
 
     public Infrastructure(String name) {
         this.name = name;
+        this.streetSide = StreetSideType.RIGHT_SIDE; 
         joinStory();
     }
 
@@ -45,8 +46,8 @@ public class Infrastructure implements BuildingInterface {
     }
 
     @Override
-    public void setStreetSide() {
-        streetSide = StreetSideType.RIGHT_SIDE;
+    public void setStreetSide(StreetSideType streetSide) {
+        this.streetSide = streetSide;
     }
 
     @Override
