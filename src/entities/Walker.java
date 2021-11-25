@@ -1,6 +1,7 @@
 package entities;
 
 import utilities.Person;
+import utilities.WalkablePlace;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import java.util.Objects;
 public class Walker extends Person {
     private boolean walkingRightNow;
     private ArrayList<Infrastructure> places = new ArrayList<>();
-    private Infrastructure currentPlace;
+    private WalkablePlace currentPlace;
 
     public Walker() {
         super("неопознанный гуляющий персонаж");
