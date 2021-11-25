@@ -7,5 +7,7 @@ public interface WalkablePlace extends ObjectInterface{
     ArrayList<Person> currentWalkers = new ArrayList<>();
     StreetSideType getStreetSide();
 
+    void deleteWalker(Person walker);
+    void addWalker(Person walker);
     void setStreetSide(StreetSideType streetSide);
 }
