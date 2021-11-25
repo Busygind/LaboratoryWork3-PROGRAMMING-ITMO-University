@@ -1,6 +1,7 @@
 package entities;
 
 import utilities.ObjectInterface;
+import utilities.Person;
 import utilities.StreetSideType;
 import utilities.WalkablePlace;
 
@@ -9,6 +10,7 @@ import java.util.Objects;
 public class Institution implements WalkablePlace {
     private StreetSideType streetSide;
     private final String name;
+    private boolean hasWalkers;
     public boolean inHouse;
 
     public Institution() {
@@ -54,6 +56,20 @@ public class Institution implements WalkablePlace {
     @Override
     public StreetSideType getStreetSide() {
         return streetSide;
+    }
+
+    @Override
+    public void deleteWalker(Person walker) {
+        this.currentWalkers.remove(walker);
+        if (this.currentWalkers.isEmpty()) {
+            this.hasWalkers = false;
+        }
+    }
+
+    @Override
+    public void addWalker(Person walker) {
+        this.currentWalkers.add(walker);
+        this.hasWalkers = true;
     }
 
     @Override
