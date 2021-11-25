@@ -15,7 +15,7 @@ public class Infrastructure implements WalkablePlace {
 
     public Infrastructure(String name) {
         this.name = name;
-        this.streetSide = StreetSideType.RIGHT_SIDE; 
+        this.streetSide = StreetSideType.RIGHT_SIDE;
         joinStory();
     }
 
